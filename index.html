@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>slider practice</title>
+	<script   src="https://code.jquery.com/jquery-1.12.2.min.js"   integrity="sha256-lZFHibXzMHo3GGeehn1hudTAP3Sc0uKXBXAzHX1sjtk="   crossorigin="anonymous"></script>
+	<style>
+
+	body{
+		margin: 0;
+		padding: 0;
+	}
+
+	.slider{
+		width: 100%;
+		overflow: hidden;
+		position: relative;
+	}
+	#images {
+	    margin: 0;
+	    position: relative;
+	    left: -200px;
+	    
+	}
+
+	
+
+	#images > img{
+		border: 0;
+		margin-right: -4px;
+	}
+
+	.small{
+		
+		position: absolute;
+		bottom: 6%;
+		left: 50%;
+		transform: translate(-50%);
+		transition: all 1s;
+	}
+
+	.right_arrow{
+		position: absolute;
+		right: 30px;
+		background: rgba(0,0,0,0.7);
+		padding: 5px;
+		border-radius: 3px;
+		top: 50%;
+
+	}
+
+	.left_arrow{
+		position: absolute;
+		left: 30px;
+		background: rgba(0,0,0,0.7);
+		padding: 5px;
+		border-radius: 3px;
+		top: 50%;
+		transform: rotate(180deg);
+	}
+
+	.right_arrow:hover{
+		cursor: pointer;
+	}
+
+	.left_arrow:hover{
+		cursor: pointer;
+	}
+	
+
+  h1,h4{
+  	margin: 0;
+  }
+  .slider_text{
+  		position: absolute;
+	    top: 10%;
+	    left: 30%;
+  }
+
+  .slider_text h1, h4{
+  	 color: white;
+  	 font-family: sans-serif;
+  	 margin: 2px;
+  }
+
+  .slider_text button{
+  	border: none;
+  	background: #e7302a;
+  	padding: 5px 10px;
+  	color: white;
+  	font-size: 20px;
+  	margin-top: 20px;
+  }
+
+  .overlay{
+  	 opacity: 0.4;
+  }
+
+  .active {
+    	opacity: 1;
+    	transform: scale(1.1);
+
+  }
+
+	</style>
+</head>
+<body>
+	<div class="slider">
+		<div id="images" style="white-space: nowrap;">
+		   <img src="images/two.png">
+		    <img src="images/one.png">
+		    <img src="images/three.png">
+		     <img src="images/two.png">
+		      <img src="images/one.png">
+		</div>
+		<div class="small" style="white-space: nowrap;">
+		  <img src="images/ones.png" class="overlay">
+		  <img src="images/ones.png" class="overlay active">
+		  <img src="images/ones.png" class="overlay">
+		  <img src="images/ones.png" class="overlay">
+		  <img src="images/ones.png" class="overlay">
+		</div>
+		<div class="right_arrow">
+			<img src="images/right.png">
+		</div>
+		<div class="left_arrow">
+			<img src="images/right.png">
+		</div>
+		<div class="slider_text">
+			<h1>ADELE</h1>
+			<h4>Set Fire To The Rain</h4>
+			<button>Exclusive MP3</button>
+		</div>
+
+	</div>
+
+	<script type="text/javascript">
+		$( document ).ready(function() {
+			
+		    $( ".right_arrow" ).click(function() {
+		    	var left = $("#images").offset().left;
+			    console.log(left);
+
+		   		if(left != -1400)
+		   		{
+		   			$( "#images" ).animate({ "left": "-=600px" }, "slow" );
+		   			var nextOne = $(".active").next();
+		   			$(".active").removeClass("active");
+		   			nextOne.addClass("active");
+		   			console.log(nextOne);
+		   		}
+			   
+			  // $(".block").animate({"left" : "-=10px"}, "slow");
+			});
+
+			$( ".left_arrow" ).click(function() {
+		     
+			   var left = $("#images").offset().left;
+			   console.log(left);
+			   if(left != -200)
+			   {
+			   		$( "#images" ).animate({ "left": "+=600px" }, "slow" );
+			   		var nextOne = $(".active").prev();
+		   			$(".active").removeClass("active");
+		   			nextOne.addClass("active");
+			   }
+			   
+			  // $(".block").animate({"left" : "-=10px"}, "slow");
+			});
+		});
+	</script>
+		
+</body>
+</html>
